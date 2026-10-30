@@ -11,6 +11,15 @@
     ├── README.md                    # skill 编写约定
     ├── picsum-photos/
     │   └── SKILL.md                 # Picsum 占位图 URL 与 API 用法
+    ├── wechat-miniprogram-category-audit/
+    │   ├── SKILL.md                 # 入口：审核流程、硬性规则、资源索引
+    │   ├── references/
+    │   │   ├── categories.json      # 微信服务类目数据（537 条）
+    │   │   └── audit-rules.md       # 主体限制、功能映射、报告模板
+    │   └── scripts/
+    │       ├── scan_project.cjs     # 扫描项目功能线索
+    │       ├── lookup.cjs           # 检索类目与资质
+    │       └── build_categories.cjs # 重建类目数据
     └── z-paging-assistant/
         ├── SKILL.md                 # 入口：触发条件、核心用法、文档索引
         └── references/              # 完整参考文档，按主题拆分（v2.8.8）
