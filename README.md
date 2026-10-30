@@ -10,10 +10,24 @@ skills/
 │   └── SKILL.md              # Picsum 占位图 URL 与 API 用法
 └── z-paging-assistant/
     ├── SKILL.md              # z-paging 分页组件用法与 FAQ
-    └── z-paging-reference.md # z-paging 完整参考文档（v2.8.8）
+    └── references/           # 完整参考文档，按主题拆分（v2.8.8）
+        ├── getting-started.md
+        ├── props.md
+        ├── events.md
+        ├── slots.md
+        ├── methods.md
+        ├── guides.md
+        ├── virtual-list.md
+        ├── chat-record-mode.md
+        ├── global-config.md
+        ├── components.md
+        ├── migration.md
+        ├── platforms.md
+        ├── upgrade.md
+        └── faq.md
 ```
 
-每个 skill 一个目录，至少包含带 name / description 元信息的 `SKILL.md`，脚本、参考文档等资源与它放在同一目录下。
+每个 skill 一个目录，至少包含带 name / description 元信息的 `SKILL.md`，脚本、参考文档等资源放在 skill 目录内，保持自包含。
 
 ## 安装
 

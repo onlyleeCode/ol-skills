@@ -20,10 +20,24 @@ z-paging 是一个基于 uni-app 的高性能分页组件（v2.8.8），支持�
 
 ## 参考文档
 
-完整的 z-paging 参考文档位于：
-`z-paging-reference.md`
+详细文档按主题拆分在 `references/` 目录，按需读取：
 
-请优先读取该文档获取详细的 API 配置、代码示例和 FAQ。
+| 文件 | 内容 |
+|------|------|
+| `references/getting-started.md` | 概述、平台兼容性、安装、快速开始、三种布局模式 |
+| `references/props.md` | 全部 Props 配置（16 类，含类型与默认值） |
+| `references/events.md` | 全部 Events 事件及回调参数 |
+| `references/slots.md` | 全部 Slots 插槽 |
+| `references/methods.md` | 全部 Methods 方法及参数 |
+| `references/guides.md` | 15 个常见使用场景的代码示例 |
+| `references/virtual-list.md` | 虚拟列表原理、平台兼容与注意事项 |
+| `references/chat-record-mode.md` | 聊天记录模式特性、注意事项与相关 API |
+| `references/global-config.md` | 全局配置、拦截器、全局错误处理 |
+| `references/components.md` | 公用子组件（swiper / empty-view / cell 等） |
+| `references/migration.md` | TypeScript 支持、Vue2 迁移到 Vue3 |
+| `references/platforms.md` | uniapp-x、mini 版、i18n、nvue 模块 |
+| `references/upgrade.md` | 版本升级指南 |
+| `references/faq.md` | 28 条常见问题排查 |
 
 ## 核心使用模式
 
@@ -156,5 +170,4 @@ npm 安装需在 pages.json 配置 easycom：
 
 ## 完整文档导航
 
-更详细的 API 参考（Props 100+项、Events 30+项、Slots 20+项、Methods 40+项、FAQ 28条、14个使用场景代码示例）请读取：
-`z-paging-reference.md`
+更详细的 API 参考（Props 100+项、Events 30+项、Slots 20+项、Methods 40+项、FAQ 28条、14个使用场景代码示例）见 `references/` 下的专题文档，索引见上文「参考文档」。
