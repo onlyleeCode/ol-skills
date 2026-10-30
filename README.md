@@ -22,25 +22,25 @@ skills/
 全局安装全部 skill：
 
 ```bash
-npx skills add xianyu21/ol-skills -g -y
+npx skills add onlyleeCode/ol-skills -g -y
 ```
 
 只安装指定 skill：
 
 ```bash
-npx skills add xianyu21/ol-skills -g -y --skill picsum-photos
+npx skills add onlyleeCode/ol-skills -g -y --skill picsum-photos
 ```
 
 项目级安装（在项目目录下执行，去掉 `-g`）：
 
 ```bash
-npx skills add xianyu21/ol-skills -y
+npx skills add onlyleeCode/ol-skills -y
 ```
 
 查看仓库中可安装的 skill：
 
 ```bash
-npx skills add xianyu21/ol-skills --list
+npx skills add onlyleeCode/ol-skills --list
 ```
 
 ## 使用方式
