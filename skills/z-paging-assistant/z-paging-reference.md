@@ -151,7 +151,8 @@ z-paging 是一个基于 uni-app 的高性能分页组件，核心特性：
 | Vue2 / Vue3                                                  | 完全支持                                      |
 | JS / TS                                                      | 完全支持                                      |
 | H5 / App (iOS/Android/鸿蒙Next)                                | 完全支持                                      |
-| 微信小程序 / QQ小程序 / 支付宝小程序 / 抖音小程序 / 百度小程序 / 快手小程序 / 飞书小程序 / 快应用 | 完全支持                                      |
+| 微信小程序 / QQ小程序 / 支付宝小程序 / 抖音小程序 / 百度小程序 / 快手小程序 / 飞书小程序 / 京东小程序 | 完全支持 |
+| 华为快应用 | 支持（快应用-联盟版暂不支持） |
 | nvue                                                         | 完全支持（使用 `<cell />` 或 `<z-paging-cell />`） |
 
 ### 性能建议
@@ -321,14 +322,16 @@ const queryList = (pageNo, pageSize) => {
 | default-page-no               | 自定义初始 pageNo                         | Number               | 1     |
 | default-page-size             | 自定义 pageSize（必须和后端一致）                | Number               | 10    |
 | fixed                         | 是否使用 fixed 布局（铺满屏幕）                  | Boolean              | true  |
-| layout-only                   | 是否只使用基础布局                            | Boolean              | false |
+| layout-only V2.8.7            | 是否只使用基础布局                            | Boolean              | false |
 | safe-area-inset-bottom        | 是否开启底部安全区域适配                         | Boolean              | false |
 | use-safe-area-placeholder     | 底部安全区域使用 placeholder 形式              | Boolean              | false |
 | use-page-scroll               | 使用页面滚动                               | Boolean              | false |
 | auto-full-height              | 页面滚动不满屏时自动填满                         | Boolean              | true  |
 | default-theme-style           | loading 主题样式                         | String               | black |
 | paging-style                  | z-paging 的 style                     | Object               | -     |
-| paging-class                  | z-paging 的 class（优先级低于 paging-style） | String/Array/Object  | -     |
+| paging-class V2.8.7           | z-paging 的 class（优先级低于 paging-style） | String/Array/Object  | -     |
+| paging-content-style          | z-paging 容器（插槽父 view）的 style       | Object               | {}    |
+| paging-content-class          | z-paging 容器（插槽父 view）的 class       | String               | ""    |
 | height                        | z-paging 的高度                         | String               | -     |
 | width                         | z-paging 的宽度                         | String               | -     |
 | max-width                     | z-paging 的最大宽度                       | String               | -     |
@@ -346,11 +349,11 @@ const queryList = (pageNo, pageSize) => {
 | autowire-query-name           | 【极简写法】自动注入的 query 名                  | String               | ""    |
 | fetch                         | 获取分页数据 Function，设置后 @query 不再触发      | Function             | null  |
 | fetch-params                  | fetch 的附加参数                          | Object               | null  |
-| in-swiper-slot                | 是否在 swiper-item 或父组件包裹中              | Boolean              | false |
 | list.sync                     | 绑定列表渲染变量（建议用 v-model）                | Array                | -     |
 | refresher-status.sync         | 绑定下拉刷新状态                             | Number               | -     |
-| chat-index.sync               | 聊天模式当前第一条 index                      | Number               | -     |
-| virtualList.sync              | 虚拟列表当前渲染数组                           | Array                | -     |
+| virtual-list.sync             | 虚拟列表当前渲染数组                           | Array                | -     |
+
+> 注：2.8.8 changelog 中的 `in-swiper-slot` / `virtual-in-swiper-slot` 在当前源码中实际属性为 `parent-level` / `virtual-parent-level`，见「八、虚拟列表&内置列表配置」和「十一、scroll-view&滚动相关配置」。
 
 ### 二、reload相关配置
 
@@ -359,6 +362,7 @@ const queryList = (pageNo, pageSize) => {
 | auto                           | mounted 后自动调用 reload    | Boolean | true  |
 | auto-scroll-to-top-when-reload | reload 时自动滚动到顶部         | Boolean | true  |
 | auto-clean-list-when-reload    | reload 时立即清空原 list      | Boolean | true  |
+| auto-clean-list-when-reload-error | reload 失败时立即清空原 list | Boolean | true |
 | show-refresher-when-reload     | 列表刷新时显示下拉刷新 view        | Boolean | false |
 | show-loading-more-when-reload  | 列表刷新时显示加载更多 view        | Boolean | false |
 | created-reload                 | 组件 created 时立即触发 reload | Boolean | false |
@@ -369,7 +373,7 @@ const queryList = (pageNo, pageSize) => {
 | --------------------------------------- | -------------------- | ------------- | --------- |
 | refresher-enabled                       | 是否开启下拉刷新             | Boolean       | true      |
 | refresher-threshold                     | 自定义下拉刷新阈值            | Number/String | 80rpx     |
-| useRefresherStatusBarPlaceholder        | 开启下拉刷新状态栏占位          | Boolean       | false     |
+| use-refresher-status-bar-placeholder    | 开启下拉刷新状态栏占位          | Boolean       | false     |
 | refresher-only                          | 是否只使用下拉刷新            | Boolean       | false     |
 | use-custom-refresher                    | 是否使用自定义下拉刷新          | Boolean       | true      |
 | reload-when-refresh                     | 用户下拉刷新时是否触发 reload   | Boolean       | true      |
@@ -405,6 +409,7 @@ const queryList = (pageNo, pageSize) => {
 | refresher-f2-threshold                  | 下拉进入二楼阈值             | Number/String | 200rpx    |
 | refresher-f2-duration                   | 下拉进入二楼动画时间(ms)       | Number/String | 200       |
 | show-refresher-f2                       | 松手后是否弹出二楼            | Boolean       | true      |
+| refresher-go-f2-text                    | 进入二楼状态文字（支持i18n）      | String/Object | 松手进入二楼    |
 | refresher-pull-rate                     | 实际下拉位移与用户下拉距离比值      | Number        | 0.75      |
 | refresher-fps                           | 自定义下拉刷新帧率            | Number/String | 40        |
 | refresher-max-angle                     | 允许触发的最大下拉角度(度)       | Number/String | 40        |
@@ -487,7 +492,7 @@ const queryList = (pageNo, pageSize) => {
 | ---------------------- | ------------------------- | ------------- | ----- |
 | use-virtual-list       | 是否使用虚拟列表                  | Boolean       | false |
 | use-compatibility-mode | 使用兼容模式（微信小程序推荐）           | Boolean       | false |
-| extra-data             | 兼容模式附加数据                  | Object        | null  |
+| extra-data             | 使用兼容模式时传递的附加数据 | Object        | {}    |
 | cell-height-mode       | cell高度模式：fixed/dynamic    | String        | fixed |
 | preload-page           | 预加载可视范围页数                 | Number/String | 12    |
 | fixed-cell-height      | 固定 cell 高度（fixed模式）       | Number/String | 0     |
@@ -495,7 +500,8 @@ const queryList = (pageNo, pageSize) => {
 | virtual-scroll-fps     | scroll 取样帧率               | Number/String | 80    |
 | use-inner-list         | 内部循环渲染列表(内置列表)            | Boolean       | false |
 | force-close-inner-list | 强制关闭 inner-list           | Boolean       | false |
-| virtual-in-swiper-slot | 虚拟列表使用 swiper-item 包裹     | Boolean       | false |
+| virtual-parent-level   | 虚拟列表父组件层级（vue3+ 微信/QQ 小程序，swiper-item 内设为 1） | Number/String | 0 |
+| virtual-cell-id-prefix | 虚拟列表 cell id 前缀（区分同页多个虚拟列表） | String | "" |
 | cell-key-name          | 内置列表 cell 的 key 名称（仅nvue） | String        | ""    |
 | inner-list-style       | innerList 样式              | Object        | {}    |
 | inner-cell-style       | innerCell 样式              | Object        | {}    |
@@ -514,7 +520,8 @@ const queryList = (pageNo, pageSize) => {
 | auto-hide-keyboard-when-chat         | 触摸列表自动隐藏键盘             | Boolean | true  |
 | auto-adjust-position-when-chat       | 键盘弹出自动调整 bottom 高度     | Boolean | true  |
 | auto-to-bottom-when-chat             | 键盘弹出自动滚动到底部            | Boolean | false |
-| chat-adjust-position-offset          | 键盘弹出占位高度偏移             | String  | 0px   |
+| chat-adjust-position-offset          | 键盘弹出占位高度偏移             | String  | 0rpx  |
+| chat-record-more-offset              | 聊天模式滚到顶部后的垂直偏移         | String  | 0rpx  |
 | show-chat-loading-when-reload        | reload 时显示 chatLoading | Boolean | false |
 | chat-loading-more-default-as-loading | 滑到顶部默认以加载中展示           | Boolean | true  |
 
@@ -529,6 +536,7 @@ const queryList = (pageNo, pageSize) => {
 | scroll-to-bottom-bounce-enabled | 滚动到底部回弹效果            | Boolean | true  |
 | scroll-with-animation           | 滚动条位置使用动画过渡          | Boolean | false |
 | scroll-into-view                | 滚动到指定子元素 id          | String  | -     |
+| parent-level                    | 父组件层级（vue3+ 微信/QQ 小程序，swiper-item 内设为 1，嵌套更深依次递增） | Number/String | 0 |
 | enable-back-to-top              | iOS点击状态栏/安卓双击标题栏返回顶部 | Boolean | true  |
 
 ### 十二、nvue独有配置
@@ -543,7 +551,7 @@ const queryList = (pageNo, pageSize) => {
 | nvue-list-id          | list 的 id                    | String  | ""    |
 | hide-nvue-bottom-tag  | 隐藏列表底部 tagView               | Boolean | false |
 | nvue-paging-enabled   | 按分页模式显示 List                 | Boolean | false |
-| offset-accuracy       | onscroll 事件触发频率(px)          | Number  | -     |
+| offset-accuracy       | onscroll 事件触发频率(px)          | Number  | 10    |
 
 ### 十三、i18n国际化配置
 
@@ -567,6 +575,7 @@ const queryList = (pageNo, pageSize) => {
 | top-z-index           | slot="top" 的 z-index（仅页面滚动） | Number | 99  |
 | super-content-z-index | 内容容器父 view 的 z-index        | Number | 1   |
 | content-z-index       | 内容容器 z-index                | Number | 1   |
+| f2-z-index            | 二楼（f2）的 z-index             | Number | 100 |
 | empty-view-z-index    | 空数据 view 的 z-index          | Number | 9   |
 
 ### 十六、其他配置
@@ -625,7 +634,7 @@ const queryList = (pageNo, pageSize) => {
 | ------------------------------------ | ------------------ | ----------- |
 | @virtualListChange V2.2.7            | 虚拟列表渲染数组改变(nvue无效) | 虚拟列表当前渲染数组  |
 | @innerCellClick V2.4.0               | 点击 cell(nvue无效)    | item, index |
-| @virtualPlaceholderTopHeight V2.7.12 | 顶部占位高度改变           | 高度(px)      |
+| @virtualTopHeightChange              | 虚拟列表顶部占位高度改变       | 高度(px)      |
 
 ### 聊天记录模式相关
 
@@ -633,6 +642,7 @@ const queryList = (pageNo, pageSize) => {
 | ---------------------------- | ---------------- | ------------- |
 | @hidedKeyboard V2.3.6        | 触摸列表隐藏键盘(nvue无效) | -             |
 | @keyboardHeightChange V2.7.1 | 键盘高度改变           | `{height: 0}` |
+| @cellStyleChange             | 聊天记录模式列表倒置样式改变   | 样式对象          |
 
 ### 滚动相关
 
@@ -731,6 +741,7 @@ const queryList = (pageNo, pageSize) => {
 | ---------------------------------- | ------------------- | -- |
 | endRefresh V2.1.0                  | 终止下拉刷新状态            | -  |
 | updateCustomRefresherHeight V2.6.1 | 手动更新自定义下拉刷新 view 高度 | -  |
+| goF2 V2.8.7                        | 手动进入二楼              | -  |
 | closeF2 V2.7.7                     | 手动关闭二楼              | -  |
 
 ### 底部加载更多相关
@@ -779,6 +790,8 @@ const queryList = (pageNo, pageSize) => {
 | scrollToTop           | 滚动到顶部                | 参数1: 是否动画                       |
 | scrollToBottom        | 滚动到底部                | 参数1: 是否动画                       |
 | scrollIntoViewById    | 滚动到指定view(vue)       | 参数1: id; 参数2: 偏移量; 参数3: 是否动画    |
+| scrollIntoViewByNodeTop | 滚动到指定view(vue)     | 参数1: 节点top值(uni.createSelectorQuery获取); 参数2: 偏移量; 参数3: 是否动画 |
+| scrollIntoViewByView  | 滚动到指定view(nvue)      | 参数1: view(通过this.$refs获取); 参数2: 偏移量; 参数3: 是否动画 |
 | scrollToY V2.1.0      | y轴滚动到指定位置(vue)       | 参数1: 距顶部距离; 参数2: 偏移量; 参数3: 是否动画 |
 | scrollToX V2.8.5      | x轴滚动(非页面滚动,vue)      | 参数1: 距左侧距离; 参数2: 偏移量; 参数3: 是否动画 |
 | scrollIntoViewByIndex | 滚动到指定view(nvue/虚拟列表) | 参数1: index; 参数2: 偏移量; 参数3: 是否动画 |
