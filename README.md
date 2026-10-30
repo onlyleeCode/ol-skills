@@ -6,10 +6,14 @@
 
 ```text
 skills/
-└── <skill-name>/
-    ├── SKILL.md      # 说明、触发条件与使用方法
-    └── ...           # 脚本、模板、资源等
+├── picsum-photos/
+│   └── SKILL.md              # Picsum 占位图 URL 与 API 用法
+└── z-paging-assistant/
+    ├── SKILL.md              # z-paging 分页组件用法与 FAQ
+    └── z-paging-reference.md # z-paging 完整参考文档（v2.8.8）
 ```
+
+每个 skill 一个目录，至少包含带 name / description 元信息的 `SKILL.md`，脚本、参考文档等资源与它放在同一目录下。
 
 ## 安装
 
