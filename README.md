@@ -5,29 +5,32 @@
 ## 目录结构
 
 ```text
-skills/
-├── picsum-photos/
-│   └── SKILL.md              # Picsum 占位图 URL 与 API 用法
-└── z-paging-assistant/
-    ├── SKILL.md              # z-paging 分页组件用法与 FAQ
-    └── references/           # 完整参考文档，按主题拆分（v2.8.8）
-        ├── getting-started.md
-        ├── props.md
-        ├── events.md
-        ├── slots.md
-        ├── methods.md
-        ├── guides.md
-        ├── virtual-list.md
-        ├── chat-record-mode.md
-        ├── global-config.md
-        ├── components.md
-        ├── migration.md
-        ├── platforms.md
-        ├── upgrade.md
-        └── faq.md
+.
+├── README.md                        # 仓库说明与安装方式
+└── skills/
+    ├── README.md                    # skill 编写约定
+    ├── picsum-photos/
+    │   └── SKILL.md                 # Picsum 占位图 URL 与 API 用法
+    └── z-paging-assistant/
+        ├── SKILL.md                 # 入口：触发条件、核心用法、文档索引
+        └── references/              # 完整参考文档，按主题拆分（v2.8.8）
+            ├── getting-started.md   # 概述、安装、快速开始、布局模式
+            ├── props.md             # Props 配置（16 类）
+            ├── events.md            # Events 事件
+            ├── slots.md             # Slots 插槽
+            ├── methods.md           # Methods 方法
+            ├── guides.md            # 常见使用场景示例
+            ├── virtual-list.md      # 虚拟列表专章
+            ├── chat-record-mode.md  # 聊天记录模式专章
+            ├── global-config.md     # 全局配置、拦截器、错误处理
+            ├── components.md        # 公用子组件
+            ├── migration.md         # TypeScript 与 Vue2→Vue3 迁移
+            ├── platforms.md         # uniapp-x、mini 版、i18n、nvue
+            ├── upgrade.md           # 版本升级指南
+            └── faq.md               # 常见问题
 ```
 
-每个 skill 一个目录，至少包含带 name / description 元信息的 `SKILL.md`，脚本、参考文档等资源放在 skill 目录内，保持自包含。
+每个 skill 一个目录，至少包含带 name / description 元信息的 `SKILL.md`。`SKILL.md` 是入口，承载触发条件、核心用法与文档索引；详细资料放在 skill 目录内，大文档可按主题拆分到 `references/` 子目录，保持自包含。
 
 ## 安装
 
